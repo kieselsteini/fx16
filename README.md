@@ -76,13 +76,13 @@ __start __data_stack __return_stack
 >0x4400                     ; start writing code at 0x4400
 
 ; xorshift 16-bit random number generator
-random_seed: ,1234          ; our random seed state
+random_seed: ,0x1234        ; our random seed state
 
 random:                     ; ( -- x ) generate a random number
     @random_seed ldw        ; get the current random number
-    dup 9  shl
-    dup 7  shr
-    dup 13 shl
+    dup 7 shl xor
+    dup 9 shr xor
+    dup 8 shl xor
     dup @random_seed stw    ; store random number
     ret
 

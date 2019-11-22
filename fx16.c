@@ -67,6 +67,7 @@ static void execute_cycles(int cycles) {
     uint16_t opcode, a, b, c;
     pc = peek16(0x0000); sp = peek16(0x0002); rp = peek16(0x0004);
     for (; cycles > 0; --cycles) {
+        /*printf("pc=$%04x, sp=$%04x, rp=%04x\n", pc, sp, rp);*/
         switch ((opcode = nextpc())) {
             case 0x00: break;
             case 0x01: push(nextpc()); break;
